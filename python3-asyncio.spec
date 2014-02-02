@@ -1,15 +1,15 @@
 #
-%bcond_without	tests
-#
-%define	module	asyncio
-#
+# Conditional build:
+%bcond_without	tests	# do not perform "make test"
+
+%define 	module	asyncio
 Summary:	Asynchronous IO Support
-Name:		python3-asyncio
+Name:		python3-%{module}
 Version:	0.2.1
 Release:	1
 License:	GPL
 Group:		Development/Languages/Python
-Source0:	http://pypi.python.org/packages/source/a/asyncio/asyncio-%{version}.tar.gz
+Source0:	http://pypi.python.org/packages/source/a/asyncio/%{module}-%{version}.tar.gz
 # Source0-md5:	55dd3fa7aaa243526315d7b6e5ed1ade
 URL:		https://pypi.python.org/pypi/asyncio
 BuildRequires:	python3-2to3
@@ -28,19 +28,17 @@ higher-level scheduler based on yield from (PEP 380)
 %setup  -q -n asyncio-%{version}
 
 %build
-%{__python3} ./setup.py build --build-base py3
-
+%{__python3} setup.py build
 %{?with_tests:%{__make} test PYTHON=%{__python3}}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_examplesdir}/python3-%{module}-%{version}
-%{__python3} ./setup.py build \
-	--build-base py3 \
-	install \
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+%{__python3} setup.py install \
 	--optimize 2 \
 	--root=$RPM_BUILD_ROOT
-cp examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/python3-%{module}-%{version}
+
+cp -p examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -48,6 +46,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
-%{_examplesdir}/python3-%{module}-%{version}
 %{py3_sitescriptdir}/%{module}
-%{py3_sitescriptdir}/*egg-info
+%{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
+%{_examplesdir}/%{name}-%{version}
