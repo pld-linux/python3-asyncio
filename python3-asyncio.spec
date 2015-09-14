@@ -6,7 +6,7 @@
 Summary:	Asynchronous IO Support
 Name:		python3-%{module}
 Version:	0.2.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/a/asyncio/%{module}-%{version}.tar.gz
