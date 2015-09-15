@@ -5,12 +5,12 @@
 %define 	module	asyncio
 Summary:	Asynchronous IO Support
 Name:		python3-%{module}
-Version:	0.2.1
-Release:	4
+Version:	3.4.3
+Release:	1
 License:	GPL
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/a/asyncio/%{module}-%{version}.tar.gz
-# Source0-md5:	55dd3fa7aaa243526315d7b6e5ed1ade
+# Source0-md5:	a189813096a6da1e46c16a41edb5f96d
 URL:		https://pypi.python.org/pypi/asyncio
 BuildRequires:	python3-2to3
 BuildRequires:	python3-modules >= 3.3
