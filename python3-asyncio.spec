@@ -28,15 +28,13 @@ higher-level scheduler based on yield from (PEP 380)
 %setup  -q -n asyncio-%{version}
 
 %build
-%{__python3} setup.py build
+%py3_build
 %{?with_tests:%{__make} test PYTHON=%{__python3}}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-%{__python3} setup.py install \
-	--optimize 2 \
-	--root=$RPM_BUILD_ROOT
+%py3_install
 
 cp -p examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
