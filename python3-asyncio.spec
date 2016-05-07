@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	tests	# do not perform "make test"
 
-%define 	module	asyncio
+%define		module	asyncio
 Summary:	Asynchronous IO Support
 Name:		python3-%{module}
 Version:	3.4.3
@@ -11,6 +11,7 @@ License:	GPL
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/a/asyncio/%{module}-%{version}.tar.gz
 # Source0-md5:	a189813096a6da1e46c16a41edb5f96d
+Patch0:		tests.patch
 URL:		https://pypi.python.org/pypi/asyncio
 BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	python3-2to3
@@ -27,6 +28,7 @@ higher-level scheduler based on yield from (PEP 380)
 
 %prep
 %setup  -q -n asyncio-%{version}
+%patch0 -p1
 
 %build
 %py3_build
