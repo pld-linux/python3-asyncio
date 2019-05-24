@@ -15,9 +15,9 @@ Patch0:		tests.patch
 URL:		https://pypi.python.org/pypi/asyncio
 BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	python3-2to3
-BuildRequires:	python3-modules >= 3.3
+BuildRequires:	python3-modules >= 1:3.3
 BuildRequires:	rpm-pythonprov
-Requires:	python3 >= 3.3
+Requires:	python3 >= 1:3.3
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
